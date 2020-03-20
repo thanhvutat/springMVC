@@ -34,6 +34,16 @@
 		mapping="/resources/**"></mvc:resources>
 
 	<!-- View Resolver declaration -->
+	<bean
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix">
+			<value>/WEB-INF/views/</value>
+		</property>
+		<property name="suffix">
+			<value>.jsp</value>
+		</property>
+	</bean>
+	
 	<mvc:view-resolvers>
 		<mvc:jsp prefix="/WEB-INF/views/" />
 	</mvc:view-resolvers>
