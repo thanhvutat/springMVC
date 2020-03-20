@@ -1,7 +1,71 @@
-<!DOCTYPE web-app PUBLIC
- "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
- "http://java.sun.com/dtd/web-app_2_3.dtd" >
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="3.0" xmlns="http://java.sun.com/xml/ns/javaee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee 
+						http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
+	<display-name>Archetype Created Web Application</display-name>
+	<description>
+		Spring MVC with Maven Project practice
+	</description>
 
-<web-app>
-  <display-name>Archetype Created Web Application</display-name>
+	<!-- Character Encoding Filter -->
+	<filter>
+		<filter-name>CharacterEncodingFilter</filter-name>
+		<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+		<init-param>
+			<param-name>encoding</param-name>
+			<param-value>UTF-8</param-value>
+		</init-param>
+		<init-param>
+			<param-name>forceEncoding</param-name>
+			<param-value>true</param-value>
+		</init-param>
+	</filter>
+
+	<filter-mapping>
+		<filter-name>CharacterEncodingFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	<!-- Character Encoding Filter finish -->
+
+	<!-- DispatcherServlet declare -->
+	<servlet>
+		<servlet-name>SpingMVCPractice</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>/WEB-INF/SpingMVCPractice-servlet.xml</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>SpingMVCPractice</servlet-name>
+		<url-pattern>/</url-pattern>
+	</servlet-mapping>
+	<!-- DispatcherServlet declare finish -->
+
+	<jsp-config>
+		<jsp-property-group>
+			<url-pattern>*.jsp</url-pattern>
+			<el-ignored>false</el-ignored>
+			<page-encoding>UTF-8</page-encoding>
+			<scripting-invalid>false</scripting-invalid>
+		</jsp-property-group>
+	</jsp-config>
+	<session-config>
+		<session-timeout>1</session-timeout>
+	</session-config>
+
+	<!-- Error Page Configuration -->
+	<error-page>
+		<error-code>500</error-code>
+		<location>/WEB-INF/views/common/error/systemError.jsp</location>
+	</error-page>
+	<error-page>
+		<error-code>404</error-code>
+		<location>/WEB-INF/views/common/error/resourceNotFoundError.jsp</location>
+	</error-page>
+	<!-- Error Page Configuration finish -->
+
 </web-app>
