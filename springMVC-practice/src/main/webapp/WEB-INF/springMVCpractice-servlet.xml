@@ -30,10 +30,11 @@
 	<mvc:annotation-driven></mvc:annotation-driven>
 
 	<!-- Resources declaration -->
-	<mvc:resources location="/resources/"
-		mapping="/resources/**"></mvc:resources>
-
+	<mvc:resources mapping="/resources/**"
+		location="/resources/"></mvc:resources>
+		
 	<!-- View Resolver declaration -->
+	<!-- 
 	<bean
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="prefix">
@@ -43,7 +44,7 @@
 			<value>.jsp</value>
 		</property>
 	</bean>
-	
+	 -->
 	<mvc:view-resolvers>
 		<mvc:jsp prefix="/WEB-INF/views/" />
 	</mvc:view-resolvers>

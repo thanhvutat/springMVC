@@ -30,17 +30,17 @@
 
 	<!-- DispatcherServlet declare -->
 	<servlet>
-		<servlet-name>SpingMVCPractice</servlet-name>
+		<servlet-name>springMVCpractice</servlet-name>
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
 		<init-param>
 			<param-name>contextConfigLocation</param-name>
-			<param-value>/WEB-INF/SpingMVCPractice-servlet.xml</param-value>
+			<param-value>/WEB-INF/springMVCpractice-servlet.xml</param-value>
 		</init-param>
 		<load-on-startup>1</load-on-startup>
 	</servlet>
 
 	<servlet-mapping>
-		<servlet-name>SpingMVCPractice</servlet-name>
+		<servlet-name>springMVCpractice</servlet-name>
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
 	<!-- DispatcherServlet declare finish -->
