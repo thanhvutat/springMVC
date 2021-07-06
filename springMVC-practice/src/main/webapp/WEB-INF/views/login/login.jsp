@@ -1,5 +1,8 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <!DOCTYPE html>
-<html lang="zxx">
+<html>
 
 <head>
 <meta charset="UTF-8">
@@ -62,7 +65,7 @@
 		<div class="container-fluid">
 			<div class="inner-header">
 				<div class="logo">
-					<a href="./index.html"> <img
+					<a href="${pageContext.servletContext.contextPath}/home"> <img
 						src="${pageContext.servletContext.contextPath}/resources/app/img/logo.png"
 						alt="">
 					</a>
@@ -85,15 +88,19 @@
 				</div>
 				<nav class="main-menu mobile-menu">
 					<ul>
-						<li><a class="active" href="./index.html">Home</a></li>
-						<li><a href="./categories.html">Shop</a>
+						<li><a class="active"
+							href="${pageContext.servletContext.contextPath}/home">Home</a></li>
+						<li><a
+							href="${pageContext.servletContext.contextPath}/categories.html">Categories</a>
 							<ul class="sub-menu">
 								<li><a href="product-page.html">Product Page</a></li>
 								<li><a href="shopping-cart.html">Shopping Card</a></li>
 								<li><a href="check-out.html">Check out</a></li>
 							</ul></li>
-						<li><a href="./product-page.html">About</a></li>
-						<li><a href="./check-out.html">Blog</a></li>
+						<li><a
+							href="${pageContext.servletContext.contextPath}/product-page.html">About</a></li>
+						<li><a
+							href="${pageContext.servletContext.contextPath}/check-out.html">Blog</a></li>
 						<li><a
 							href="${pageContext.servletContext.contextPath}/contact">Contact</a></li>
 					</ul>
@@ -156,13 +163,22 @@
 	</section>
 	<!-- Page Add Section End -->
 
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-8">
+				<div class="col-lg-12">
+					<label id="errorMessages" class="warningEmailInvalid">${errorMessages}</label>
+				</div>
+			</div>
+		</div>
+	</div>
+
 	<!-- Login Section Begin -->
 	<div class="login-section">
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-8">
-					<form id="loginForm" name="loginForm" action="" class="login-form"
-						method="POST">
+					<form:form id="loginForm" name="loginForm" class="login-form" method="POST" >
 						<div class="row">
 							<div class="col-lg-12">
 								<input id="email" type="text" name="email" placeholder="Email">
@@ -181,7 +197,7 @@
 									type="submit">Login</button>
 							</div>
 						</div>
-					</form>
+					</form:form>
 				</div>
 				<div class="col-lg-3 offset-lg-1">
 					<div class="contact-widget">
@@ -338,6 +354,8 @@
 		src="${pageContext.servletContext.contextPath}/resources/app/js/mixitup.min.js"></script>
 	<script
 		src="${pageContext.servletContext.contextPath}/resources/app/js/main.js"></script>
+	<script
+		src="${pageContext.servletContext.contextPath}/resources/app/js/app.js"></script>
 
 </body>
 
@@ -348,26 +366,30 @@
 						$('#emailInvalid').hide();
 						$('#passwordTooLong').hide();
 						$('#passwordTooShort').hide();
+						if ('${errorMessages}' != '') {
+							$('#errorMessages').text('${errorMessages}');
+							$('#errorMessages').show();
+						} else {
+							$('#errorMessages').hide();
+						}
 						$('#buttonLoginSubmit')
 								.on(
 										'click',
 										function(e) {
 											e.preventDefault();
-											var email;
-											var password;
-
-											email = $('#email').val();
-											password = $('#password').val();
+											var email = $('#email').val();
+											var password = $('#password').val();
 
 											var checkEmail = isEmail(email);
 											var checkPass = checkValidPassword(password);
+											
+											var thanh = $('#loginForm').val();
 
 											if (checkEmail && checkPass) {
-												$('#loginForm')
-														.attr('action',
-																'${pageContext.servletContext.contextPath}/login?form')
-														.submit();
-												//submitEditAction('#loginForm', '${pageContext.servletContext.contextPath}/login');
+												//$('#loginForm').attr('action', '${pageContext.servletContext.contextPath}/login?form');
+												//$('#loginForm').attr('modelAttribute', 'loginForm');
+												//$('#loginForm').submit();
+												submitEditAction('#loginForm', '${pageContext.servletContext.contextPath}/login?form');
 											}
 										});
 					});
@@ -380,13 +402,13 @@
 			$('#emailInvalid').show();
 			return false;
 		}
-		if (regex.test(email)) {
+		/* if (regex.test(email)) {
 			$('#emailInvalid')
 					.text(
 							'Your email is invalid. Please provide the correct email address that you in use.');
 			$('#emailInvalid').show();
 			return false;
-		}
+		} */
 		return true;
 	}
 
@@ -396,13 +418,13 @@
 			$('#passwordInvalid').show();
 			return false;
 		}
-		if (password.length() < 8) {
+		if (password.length < 8) {
 			$('#passwordInvalid').text(
 					'Please insert your password at least 8 characters.');
 			$('#passwordInvalid').show();
 			return false;
 		}
-		if (password.length() > 32) {
+		if (password.length > 32) {
 			$('#passwordInvalid').text(
 					'Please insert your password within 32 characters.');
 			$('#passwordInvalid').show();

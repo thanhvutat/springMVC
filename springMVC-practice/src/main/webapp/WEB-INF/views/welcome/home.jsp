@@ -79,12 +79,13 @@
 				<nav class="main-menu mobile-menu">
 					<ul>
 						<li><a class="active" href="${pageContext.servletContext.contextPath}/home">Home</a></li>
-						<li><a href="./categories.html">Shop</a>
+						<li><a href="#">Categories</a>
 							<ul class="sub-menu">
 								<li><a href="product-page.html">Product Page</a></li>
 								<li><a href="shopping-cart.html">Shopping Card</a></li>
 								<li><a href="check-out.html">Check out</a></li>
-							</ul></li>
+							</ul>
+						</li>
 						<li><a href="./product-page.html">About</a></li>
 						<li><a href="./check-out.html">Blog</a></li>
 						<li><a href="${pageContext.servletContext.contextPath}/contact">Contact</a></li>
