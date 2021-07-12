@@ -27,6 +27,8 @@
 
 	<!-- Context service, annotation declaration -->
 	<context:annotation-config></context:annotation-config>
+
+	<!-- Adding support for conversion, formatting and validation -->
 	<mvc:annotation-driven></mvc:annotation-driven>
 
 	<context:component-scan
@@ -37,7 +39,6 @@
 		location="/resources/"></mvc:resources>
 
 	<!-- View Resolver declaration -->
-
 	<bean
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="prefix" value="/WEB-INF/views/"></property>
@@ -45,22 +46,13 @@
 	</bean>
 	<!-- <bean id="validation" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean" 
 		/> -->
-
 	<bean id="messageSource"
 		class="org.springframework.context.support.ResourceBundleMessageSource">
 		<property name="basename" value="messages" />
 	</bean>
+
 	<!-- Controller scan base -->
 	<context:component-scan
 		base-package="com.thanhvt"></context:component-scan>
-
-	<mvc:view-controller path="/login"
-		view-name="login/login" />
-	<mvc:view-controller path="/home"
-		view-name="welcome/home" />
-	<mvc:view-controller path="/#"
-		view-name="welcome/home" />
-	<mvc:view-controller path="/"
-		view-name="welcome/home" />
 
 </beans>
