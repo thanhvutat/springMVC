@@ -10,7 +10,7 @@
 
 <body>
 	<!-- Header Section Begin -->
-		<jsp:include page="/WEB-INF/views/common/common-header-selection.jsp"></jsp:include>
+	<jsp:include page="/WEB-INF/views/common/common-header-selection.jsp"></jsp:include>
 	<!-- Header End -->
 	<!-- Page Add Section Begin -->
 	<section class="page-add">
@@ -48,15 +48,17 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-8">
-					<form:form id="loginForm" name="loginForm" class="login-form" method="POST" >
+					<form:form id="loginForm" name="loginForm" class="login-form"
+						action="${pageContext.servletContext.contextPath}/login/form"
+						method="POST">
 						<div class="row">
 							<div class="col-lg-12">
-								<input id="email" type="text" name="email" placeholder="Email">
+								<input id="email" type="text" name="email" placeholder="Email" />
 
 							</div>
 							<div class="col-lg-12">
 								<input id="password" type="password" name="password"
-									maxlength="30" placeholder="Password">
+									placeholder="Password" />
 							</div>
 							<div class="col-lg-12">
 								<label id="emailInvalid" class="warningEmailInvalid"></label> <label
@@ -111,7 +113,7 @@
 	<!-- Login Section End -->
 
 	<!-- Footer Section Begin -->
-	 <jsp:include page="/WEB-INF/views/common/common-footer.jsp"></jsp:include>
+	<jsp:include page="/WEB-INF/views/common/common-footer.jsp"></jsp:include>
 	<!-- Footer Section End -->
 
 	<!-- Js Plugins -->
@@ -135,7 +137,7 @@
 		src="${pageContext.servletContext.contextPath}/resources/app/js/app.js"></script>
 
 </body>
-
+<!-- 
 <script>
 	$(document)
 			.ready(
@@ -159,14 +161,15 @@
 
 											var checkEmail = isEmail(email);
 											var checkPass = checkValidPassword(password);
-											
+
 											var thanh = $('#loginForm').val();
 
 											if (checkEmail && checkPass) {
 												//$('#loginForm').attr('action', '${pageContext.servletContext.contextPath}/login?form');
 												//$('#loginForm').attr('modelAttribute', 'loginForm');
 												//$('#loginForm').submit();
-												submitEditAction('#loginForm', '${pageContext.servletContext.contextPath}/login?form');
+												submitEditAction('#loginForm',
+														'${pageContext.servletContext.contextPath}/login?form');
 											}
 										});
 					});
@@ -216,7 +219,7 @@
 		return true;
 	}
 </script>
-
+ -->
 
 
 </html>

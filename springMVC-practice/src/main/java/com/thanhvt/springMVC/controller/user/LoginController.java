@@ -2,6 +2,7 @@ package com.thanhvt.springMVC.controller.user;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
@@ -33,16 +34,17 @@ public class LoginController {
         binder.validate();
     }
 
-    @RequestMapping(value = "login", method = { RequestMethod.GET, RequestMethod.POST })
+    @RequestMapping(value = "login")
     public String login(HttpServletRequest request) {
         System.out.print("thanhvt | Violet | login page request ...\n");
         return "login/login";
     }
 
-    @RequestMapping(value = "login", method = RequestMethod.POST, params = "form")
-    public String login(Model model, @ModelAttribute("loginForm") LoginForm loginForm, BindingResult result) {
+    @RequestMapping(value = "login/form", method = RequestMethod.POST)
+    public String login(@Valid @ModelAttribute("loginForm") LoginForm loginForm, BindingResult result) {
         try {
-//            if (result.hasErrors()) {
+            if (result.hasErrors()) {
+                System.out.println("thanhvt | Violet | error message ...");
 //                List<String> errorMessages = new ArrayList<String>();
 //                String errorMessage;
 //                // TODO send a list of error code to client but not show correctly yet
@@ -57,13 +59,13 @@ public class LoginController {
 //                errorMessage = messageSource.getMessage("loginForm.error", null, LocaleContextHolder.getLocale());
 //                model.addAttribute("errorMessages", errorMessage);
 //                return redoLogin(loginForm, model);
-//            }
-			UserLoginInfo userLoginInfor = loginService.loginUser(loginForm);
-			if (userLoginInfor != null) {
-				return "redirect:login?success";
-			} else {
+            }
+            UserLoginInfo userLoginInfor = loginService.loginUser(loginForm);
+            if (userLoginInfor != null) {
+                return "redirect:login?success";
+            } else {
 
-			}
+            }
             System.out.print("thanhvt | Violet | log form valid ...\n");
 
         } catch (Exception e) {
