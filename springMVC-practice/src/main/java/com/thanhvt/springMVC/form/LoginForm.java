@@ -2,21 +2,19 @@ package com.thanhvt.springMVC.form;
 
 import java.io.Serializable;
 
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-import org.hibernate.validator.constraints.NotBlank;
-
-//@Data
 public class LoginForm implements Serializable {
 
 	public static final long serialVersionUID = 1L;
 
-//	@NotBlank
-//	@Email
+	@NotNull
+	@Size(min=1)
 	public String email;
 
-//	@NotBlank
-//	@Size(min = 8, max = 32)
+	@NotNull
+	@Size(min=8)
 	public String password;
 
     public String getEmail() {
